@@ -1,6 +1,8 @@
 package com.api.employee.controller;
 
+import com.api.employee.exceptions.EmployeeNotFoundException;
 import com.api.employee.model.Employee;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -25,11 +27,12 @@ public class EmployeeController {
 
     @GetMapping("/api/v1/employees/{employeeName}")
     public List<Employee> getEmployee(@PathVariable String employeeName) {
-        return Arrays.asList(new Employee(1, employeeName, "CVS", "PDE"));
+        //return Arrays.asList(new Employee(1, employeeName, "CVS", "PDE"));
+        throw new EmployeeNotFoundException();
     }
 
     @PostMapping("/api/v1/employees/create")
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
         Employee newEmployee = employee;
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/id")
@@ -37,6 +40,5 @@ public class EmployeeController {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
-
 
 }
