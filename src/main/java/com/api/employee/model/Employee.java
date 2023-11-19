@@ -3,9 +3,11 @@ package com.api.employee.model;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
     private int empId;
     @Size(min = 3, message = "Name should have minimum 3 characters")

@@ -13,9 +13,15 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class EmployeeResposeEntityResponseHandler extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    public final ResponseEntity<ErrorDetails> handleEmployeeNotFoundException(Exception ex, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails("Employee Not Found!", request.getDescription(false));
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ErrorDetails> handleExceptionAll(Exception ex, WebRequest request)
-            throws Exception {
+    public final ResponseEntity<ErrorDetails> handleExceptionAll(Exception ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -28,10 +34,5 @@ public class EmployeeResposeEntityResponseHandler extends ResponseEntityExceptio
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(EmployeeNotFoundException.class)
-    public final ResponseEntity<ErrorDetails> handleEmployeeNotFoundException(Exception ex, WebRequest request)
-            throws Exception {
-        ErrorDetails errorDetails = new ErrorDetails("Employee Not Found!", request.getDescription(false));
-        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
-    }
+
 }
