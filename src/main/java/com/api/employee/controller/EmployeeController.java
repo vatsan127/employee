@@ -12,7 +12,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
-import java.util.List;
 import java.util.Properties;
 
 @RestController
@@ -42,7 +41,7 @@ public class EmployeeController {
 
     @PostMapping("/api/v1/employees/create")
     public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
-        Employee newEmployee = service.saveEmp(employee);
+        Employee newEmployee = service.saveEmployee(employee);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/id")
                 .buildAndExpand(employee.getEmpId()).toUri();
         return ResponseEntity.created(location).build();
