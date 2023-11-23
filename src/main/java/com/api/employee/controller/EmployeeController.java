@@ -1,6 +1,5 @@
 package com.api.employee.controller;
 
-import com.api.employee.exceptions.EmployeeNotFoundException;
 import com.api.employee.model.Employee;
 import com.api.employee.service.JdbcService;
 import jakarta.validation.Valid;
