@@ -41,10 +41,16 @@ public class EmployeeController {
 
     @PostMapping("/api/v1/employees/create")
     public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
-        Employee newEmployee = service.saveEmployee(employee);
+        Employee newEmp = service.saveEmployee(employee);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/id")
-                .buildAndExpand(employee.getEmpId()).toUri();
+                .buildAndExpand(newEmp.getEmpId()).toUri();
         return ResponseEntity.created(location).build();
+    }
+
+    @DeleteMapping("/api/v1/employees/{id}")
+    public ResponseEntity deleteEmployee(long id) {
+       Employee employee = service.deleteById(id);
+       return ResponseEntity.ok(employee);
     }
 
 }

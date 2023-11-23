@@ -21,8 +21,7 @@ public class JdbcService {
     }
 
     public Employee saveEmployee(Employee employee) {
-        jdbcTemplate.update(INSERT_QUERY, employee.getEmpId(),
-                employee.getEmpName(), employee.getEmpDept(), employee.getEmpRole());
+        jdbcTemplate.update(INSERT_QUERY, employee.getEmpName(), employee.getEmpDept(), employee.getEmpRole());
         return employee;
     }
 
