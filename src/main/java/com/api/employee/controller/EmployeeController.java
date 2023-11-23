@@ -28,18 +28,14 @@ public class EmployeeController {
         return properties;
     }
 
-    @GetMapping("/api/v1/employees/{id}")
+    @GetMapping("/{id}")
     public Employee getEmployee(@PathVariable Long id) {
         Employee employee = service.findById(id);
-        if (employee == null ) {
-            throw new EmployeeNotFoundException();
-        }
-        else {
-            return employee;
-        }
+        return employee;
+
     }
 
-    @PostMapping("/api/v1/employees/create")
+    @PostMapping("/create")
     public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
         Employee newEmp = service.saveEmployee(employee);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/id")
@@ -47,10 +43,16 @@ public class EmployeeController {
         return ResponseEntity.created(location).build();
     }
 
-    @DeleteMapping("/api/v1/employees/{id}")
-    public ResponseEntity deleteEmployee(long id) {
-       Employee employee = service.deleteById(id);
-       return ResponseEntity.ok(employee);
+    @PostMapping("/update/{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @Valid @RequestBody Employee employee) {
+        Employee updatedEmp = service.updateEmployee(id, employee);
+        return ResponseEntity.ok(updatedEmp);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity deleteEmployee(@PathVariable Long id) {
+        Employee employee = service.deleteById(id);
+        return ResponseEntity.ok("EMPLOYEE DATA REMOVED ");
     }
 
 }

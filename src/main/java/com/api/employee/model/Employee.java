@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Employee {
-    private int empId;
+    private Long empId;
     @Size(min = 3, message = "Name should have minimum 3 characters")
     private String empName;
     @Size(min = 3, message = "Department should have minimum 3 characters")
