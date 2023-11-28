@@ -11,6 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
+import java.util.List;
 import java.util.Properties;
 
 @RestController
@@ -32,6 +33,9 @@ public class EmployeeController {
         Employee employee = service.findById(id);
         return employee;
 
+    } @GetMapping("/all")
+    public List<Employee> getEmployee() {
+        return service.findAll();
     }
 
     @PostMapping("/create")

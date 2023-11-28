@@ -11,6 +11,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 import static com.api.employee.constants.QueryConstants.*;
 
 @Transactional
@@ -28,6 +30,17 @@ public class JdbcService {
             return employee;
         } catch (DataAccessException e) {
             log.info("Employee with ID {} not found. ", id);
+            throw new EmployeeNotFoundException();
+        }
+    }
+
+    public List<Employee> findAll(){
+        try {
+            List<Employee> employeeList = jdbcTemplate.query(SELECT_ALL_QUERY, new BeanPropertyRowMapper<>(Employee.class));
+            log.info("JdbcService :: findAll :: employees :: {}", employeeList);
+            return employeeList;
+        } catch (DataAccessException e) {
+            log.error("Error occurred while retrieving all employees: {}", e.getMessage());
             throw new EmployeeNotFoundException();
         }
     }

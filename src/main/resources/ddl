@@ -1,11 +1,11 @@
 create database employeedb;
 use employeedb;
 
-CREATE TABLE `emp_info` (
+CREATE TABLE `EMP_INFO` (
   `emp_id` int NOT NULL AUTO_INCREMENT,
   `emp_name` varchar(15) DEFAULT NULL,
   `emp_dept` varchar(15) DEFAULT NULL,
   `emp_role` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`emp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)
 
