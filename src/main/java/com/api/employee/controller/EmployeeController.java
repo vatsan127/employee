@@ -58,7 +58,7 @@ public class EmployeeController {
         Employee employee = service.deleteById(id);
         return ResponseEntity.ok(String.format("DATA REMOVED " +
                         "\nName: %s" +
-                        "\n EmployeeId: %s"
+                        "\nEmployeeId: %s"
                 , employee.getEmpName(), String.valueOf(employee.getEmpId())
         ));
     }
