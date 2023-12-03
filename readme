@@ -1,0 +1,23 @@
+* Dockerfile and docker-compose.yml ARE AVAILABLE IN THE PROJECT
+* SQL FOR DATABASE AND TABLE ARE AVAILABLE IN path: src\main\resources\data.sql
+* employeedb DATABASE AND EMP_INF0 TABLE SHOULD BE PRESENT IN MYSQL
+
+url
+api-request-url= http://localhost:8080/api/v1/employee
+swagger-url= http://localhost:8080/swagger-ui/index.html
+
+** FOR DOCKER FILE
+commands
+docker build . -t emp_image
+# WHEN MYSQL IS ON LOCAL MACHINE
+docker run --name employee -p 8080:8080 --network="host" emp_image
+OR
+#WHEN MYSQL IS ON A CONTAINER
+docker run --name employee -p 8080:8080 --link mysql emp_image
+
+** FOR DOCKER COMPOSE
+commands
+#WHEN MYSQL IS ON A CONTAINER
+docker compose up
+
+/* THANK YOU */
