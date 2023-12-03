@@ -16,7 +16,6 @@ import java.util.Properties;
 
 @RestController
 public class EmployeeController {
-
     @Autowired
     private JdbcService service;
 
@@ -33,7 +32,9 @@ public class EmployeeController {
         Employee employee = service.findById(id);
         return employee;
 
-    } @GetMapping("/all")
+    }
+
+    @GetMapping("/all")
     public List<Employee> getEmployee() {
         return service.findAll();
     }
@@ -55,7 +56,11 @@ public class EmployeeController {
     @DeleteMapping("delete/{id}")
     public ResponseEntity deleteEmployee(@PathVariable Long id) {
         Employee employee = service.deleteById(id);
-        return ResponseEntity.ok("EMPLOYEE DATA REMOVED ");
+        return ResponseEntity.ok(String.format("DATA REMOVED " +
+                        "\nName: %s" +
+                        "\nEmployeeId: %s"
+                , employee.getEmpName(), String.valueOf(employee.getEmpId())
+        ));
     }
 
 }

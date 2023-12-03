@@ -1,0 +1,15 @@
+owner-name: srivatsan
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1/employee
+
+spring:
+  application:
+    name: employee
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/employeedb
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
