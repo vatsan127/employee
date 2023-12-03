@@ -1,6 +1,6 @@
 * Dockerfile and docker-compose.yml ARE AVAILABLE IN THE PROJECT
-* employeedb DATABASE AND EMP_INF0 TABLE SHOULD BE PRESENT
-* SQL FOR DATABSE AND TABLE ARE AVAILABLE IN path: src\main\resources\data.sql
+* SQL FOR DATABASE AND TABLE ARE AVAILABLE IN path: src\main\resources\data.sql
+* employeedb DATABASE AND EMP_INF0 TABLE SHOULD BE PRESENT IN MYSQL
 
 url
 api-request-url= http://localhost:8080/api/v1/employee
