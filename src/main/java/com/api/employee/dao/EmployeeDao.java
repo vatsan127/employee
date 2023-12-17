@@ -21,15 +21,11 @@ import static com.api.employee.constants.QueryConstants.*;
 @Repository
 public class EmployeeDao {
     @Autowired
-    private static JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
+
+    private boolean dbConnStatus;
 
     private static Logger log = LoggerFactory.getLogger(EmployeeService.class);
-
-    @PostConstruct
-    public void init() {
-
-        System.out.println("MyComponent initialized!");
-    }
 
     public Employee findById(Long id) {
         try {
@@ -42,7 +38,7 @@ public class EmployeeDao {
         }
     }
 
-    public List<Employee> findAll(){
+    public List<Employee> findAll() {
         try {
             List<Employee> employeeList = jdbcTemplate.query(SELECT_ALL_QUERY, new BeanPropertyRowMapper<>(Employee.class));
             log.info("JdbcService :: findAll :: employees :: {}", employeeList);
