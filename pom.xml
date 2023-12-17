@@ -10,8 +10,7 @@
     </parent>
     <groupId>com.api</groupId>
     <artifactId>employee</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>employee</name>
+    <name>employee-APP</name>
     <description>Employee API for CRUD operations</description>
     <properties>
         <java.version>17</java.version>

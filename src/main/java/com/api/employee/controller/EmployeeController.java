@@ -1,7 +1,7 @@
 package com.api.employee.controller;
 
 import com.api.employee.model.Employee;
-import com.api.employee.service.JdbcService;
+import com.api.employee.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.Properties;
 @RestController
 public class EmployeeController {
     @Autowired
-    private JdbcService service;
+    private EmployeeService service;
 
     @RequestMapping(method = RequestMethod.GET, path = "/application-properties")
     public Properties applicationProperties() throws IOException {
@@ -29,19 +29,19 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public Employee getEmployee(@PathVariable Long id) {
-        Employee employee = service.findById(id);
+        Employee employee = service.getEmployee(id);
         return employee;
 
     }
 
     @GetMapping("/all")
     public List<Employee> getEmployee() {
-        return service.findAll();
+        return service.getAllEmployee();
     }
 
     @PostMapping("/create")
     public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
-        Employee newEmp = service.saveEmployee(employee);
+        Employee newEmp = service.saveNewEmployee(employee);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/id")
                 .buildAndExpand(newEmp.getEmpId()).toUri();
         return ResponseEntity.created(location).build();
@@ -49,13 +49,13 @@ public class EmployeeController {
 
     @PostMapping("/update/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @Valid @RequestBody Employee employee) {
-        Employee updatedEmp = service.updateEmployee(id, employee);
+        Employee updatedEmp = service.updateEmployeeDetails(id, employee);
         return ResponseEntity.ok(updatedEmp);
     }
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity deleteEmployee(@PathVariable Long id) {
-        Employee employee = service.deleteById(id);
+        Employee employee = service.deleteEmployee(id);
         return ResponseEntity.ok(String.format("DATA REMOVED " +
                         "\nName: %s" +
                         "\nEmployeeId: %s"

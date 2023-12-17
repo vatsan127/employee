@@ -2,10 +2,12 @@ version: "3.8"
 
 services:
   mysql:
-    image: mysql:latest
+    image: mysql:8.0.35
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: employeedb
+    volumes:
+      - /home/srivatsan/data:/var/lib/mysql
     ports:
       - "3307:3306"
 

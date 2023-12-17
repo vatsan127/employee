@@ -1,7 +1,8 @@
-package com.api.employee.service;
+package com.api.employee.dao;
 
 import com.api.employee.exceptions.EmployeeNotFoundException;
 import com.api.employee.model.Employee;
+import com.api.employee.service.EmployeeService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +18,11 @@ import static com.api.employee.constants.QueryConstants.*;
 
 @Transactional
 @Repository
-public class JdbcService {
+public class EmployeeDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private Logger log = LoggerFactory.getLogger(JdbcService.class);
+    private Logger log = LoggerFactory.getLogger(EmployeeService.class);
 
     public Employee findById(Long id) {
         try {
@@ -29,7 +30,7 @@ public class JdbcService {
             log.info("JdbcService :: findById :: employee :: {}", employee);
             return employee;
         } catch (DataAccessException e) {
-            log.info("Employee with ID {} not found. ", id);
+            log.error("Employee with ID {} not found. ", id);
             throw new EmployeeNotFoundException();
         }
     }
