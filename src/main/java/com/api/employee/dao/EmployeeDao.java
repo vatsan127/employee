@@ -3,6 +3,7 @@ package com.api.employee.dao;
 import com.api.employee.exceptions.EmployeeNotFoundException;
 import com.api.employee.model.Employee;
 import com.api.employee.service.EmployeeService;
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +21,15 @@ import static com.api.employee.constants.QueryConstants.*;
 @Repository
 public class EmployeeDao {
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private static JdbcTemplate jdbcTemplate;
 
-    private Logger log = LoggerFactory.getLogger(EmployeeService.class);
+    private static Logger log = LoggerFactory.getLogger(EmployeeService.class);
+
+    @PostConstruct
+    public void init() {
+
+        System.out.println("MyComponent initialized!");
+    }
 
     public Employee findById(Long id) {
         try {

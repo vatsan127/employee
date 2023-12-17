@@ -11,12 +11,14 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import static com.api.employee.constants.QueryConstants.*;
-
+@Service
 public class EmployeeService {
+    @Autowired
     private EmployeeDao dao;
 
     public Employee getEmployee(Long id) {

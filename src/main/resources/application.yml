@@ -9,7 +9,8 @@ spring:
   application:
     name: employee
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/employeedb
+#    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/employeedb
+    url: jdbc:mysql://localhost:3307/employeedb
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver

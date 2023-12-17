@@ -7,9 +7,9 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: employeedb
     volumes:
-      - /home/srivatsan/data:/var/lib/mysql
+      - /home/srivatsan/data/mysql_:/var/lib/mysql
     ports:
-      - "3307:3306"
+      - "3306:3306"
 
   employee:
     image: emp_image
