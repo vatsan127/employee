@@ -56,10 +56,9 @@ public class EmployeeDao {
     }
 
     public Employee updateEmployee(Long id, Employee employee) {
-        Employee employee1 = findById(id);
         jdbcTemplate.update(UPDATE_QUERY, employee.getEmpName(), employee.getEmpDept(), employee.getEmpRole(), id);
-        log.info("JdbcService :: updateEmployee :: employee :: {}", employee1);
-        return employee1;
+        log.info("JdbcService :: updateEmployee :: employee :: {}", employee);
+        return employee;
     }
 
     public Employee deleteById(Long id) {

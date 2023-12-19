@@ -1,22 +1,22 @@
 version: "3.8"
 
 services:
-  mysql:
+  employee_mysql:
+    container_name: employee_mysql
     image: mysql:8.0.35
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: employeedb
-    volumes:
-      - /home/srivatsan/data/mysql_:/var/lib/mysql
     ports:
       - "3306:3306"
 
   employee:
-    image: emp_image
+    container_name: employee_app
+    image: employee_app
     environment:
-      - MYSQL_HOST=mysql
+      - MYSQL_HOST=employee_mysql
       - MYSQL_PORT=3306
     ports:
       - "8080:8080"
     depends_on:
-      - mysql
+      - employee_mysql

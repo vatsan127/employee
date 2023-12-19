@@ -9,7 +9,7 @@ spring:
   application:
     name: employee
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/employeedb
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/
     #url: jdbc:mysql://localhost:3306/employeedb
     username: root
     password: password
