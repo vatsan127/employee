@@ -20,7 +20,9 @@ public class LoggingAspect {
     public void logBefore(JoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
         if (args.length > 0) {
-            log.info("Method: '{}', Method parameters: '{}'. ", joinPoint.getSignature().getName(), Arrays.toString(args));
+            log.info("Method: '{}' called, Method parameters: '{}'. ", joinPoint.getSignature().getName(), Arrays.toString(args));
+        } else {
+            log.info("Method '{}' called with no Method Parameters.", joinPoint.getSignature().getName());
         }
     }
 
