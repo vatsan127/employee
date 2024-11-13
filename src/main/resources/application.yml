@@ -9,12 +9,10 @@ spring:
   banner:
     location: banner.txt
 
-#  sql:
-#    init:
-#      mode: always
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
+  # Initialize Schema at StartUp
+  sql:
+    init:
+      mode: never
 
   datasource:
     url: jdbc:mysql://localhost:3306/dev

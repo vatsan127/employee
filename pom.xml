@@ -73,6 +73,13 @@
             <version>20231013</version>
         </dependency>
 
+        <!--Spring AOP-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>6.1.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>
