@@ -12,7 +12,7 @@ spring:
   # Initialize Schema at StartUp
   sql:
     init:
-      mode: never
+      mode: always
 
   datasource:
     url: jdbc:mysql://localhost:3306/dev

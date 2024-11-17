@@ -29,10 +29,5 @@ public class Employee {
 
     @Column(name = "department")
     private String department;
-
-//    @Column(name = "created_date", updatable = false)
-//    private LocalDateTime createdDate;
-//
-//    @Column(name = "modified_date")
-//    private LocalDateTime modifiedDate;
+    
 }
