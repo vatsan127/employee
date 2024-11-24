@@ -59,6 +59,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Postgres -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+
         <!--Logback-->
         <dependency>
             <groupId>ch.qos.logback</groupId>

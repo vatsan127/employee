@@ -4,18 +4,32 @@ server:
     context-path: /employee
 
 spring:
-  application:
-    name: employee
-  banner:
-    location: banner.txt
+  profiles.active: postgres
+  application.name: employee
+  banner.location: banner.txt
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  # Initialize Schema at StartUp from schema.sql file
+#  sql.init.mode: never
 
-  # Initialize Schema at StartUp
-  sql:
-    init:
-      mode: always
-
+---
+# Properties for MySQL Datasource
+spring:
+  config.activate.on-profile: mysql
   datasource:
     url: jdbc:mysql://localhost:3306/dev
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+---
+# Properties for Postgres Datasource
+spring:
+  config.activate.on-profile: postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dev
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
