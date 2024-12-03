@@ -2,6 +2,8 @@ package dev.project.employee.service;
 
 import dev.project.employee.model.Employee;
 import dev.project.employee.repository.EmployeeRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,6 +54,14 @@ public class EmployeeService {
 
     public List<Employee> getEmployeesByFirstNameAndAge(String name, Integer age) {
         return repository.findByFirstNameAndAge(name, age);
+    }
+
+    public List<Employee> getEmployeesWithCustomQuery(Integer age) {
+        return repository.findEmployeesWithCustomQuery(age);
+    }
+
+    public Page<Employee> getEmployeesByPage(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
 }

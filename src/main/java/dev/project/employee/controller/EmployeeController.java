@@ -3,6 +3,10 @@ package dev.project.employee.controller;
 import dev.project.employee.model.Employee;
 import dev.project.employee.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -87,4 +91,22 @@ public class EmployeeController {
         return employees.isEmpty() ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
+    @GetMapping("/custom-query")
+    public ResponseEntity<List<Employee>> getEmployeesByCustomQuery(@RequestParam int age) {
+        List<Employee> employees = service.getEmployeesWithCustomQuery(age);
+        return employees.isEmpty() ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<Employee>> getEmployeesByPage(
+            @RequestParam int page,
+            @RequestParam(defaultValue = "1") int size,
+            @RequestParam(defaultValue = "firstName") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortOrder
+    ) {
+        Sort sort = sortOrder.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<Employee> employeesWithPage = service.getEmployeesByPage(pageable);
+        return new ResponseEntity<>(employeesWithPage, HttpStatus.OK);
+    }
 }
