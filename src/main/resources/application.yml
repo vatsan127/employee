@@ -2,7 +2,12 @@ server:
   port: 8080
   servlet.context-path: /${spring.application.name}/v1
 
-management.info.env.enabled: true
+management:
+  metrics.export.prometheus.enabled: true
+  info.env.enabled: true
+  endpoints:
+    web.exposure.include: "*"
+    prometheus.enabled: true
 
 spring:
   application:

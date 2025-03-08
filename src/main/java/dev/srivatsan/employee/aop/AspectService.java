@@ -15,7 +15,7 @@ import java.util.Arrays;
 @Slf4j
 @Component
 @ConditionalOnProperty(prefix = "global", value = "debugModeEnabled", havingValue = "true", matchIfMissing = false)
-public class TransactionServiceAspect {
+public class AspectService {
 
     private static final String POINTCUT_EXEC_FOR_ALL_SERVICE_METHODS = "execution(* dev.srivatsan.employee.service.*.*(..))";
 

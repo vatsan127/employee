@@ -2,7 +2,7 @@ package dev.srivatsan.employee.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/employee")
+@RestController("/")
 public class EmployeeController {
 
     /* ToDo:
