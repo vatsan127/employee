@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+  database:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: employees
+    volumes:
+      - database:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - network
+
+  service:
+    image: employee:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: postgres
+      DB_HOST: database
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
+      DB_DATABASE: employees
+    depends_on:
+      - database
+    ports:
+      - "8080:8080"
+    networks:
+      - network
+
+volumes:
+  database:
+
+networks:
+  network:

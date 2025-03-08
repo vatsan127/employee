@@ -1,0 +1,38 @@
+server:
+  port: 8080
+  servlet.context-path: /${spring.application.name}/v1
+
+management.info.env.enabled: true
+
+spring:
+  application:
+    name: employee
+    version: 1.0.0
+  profiles:
+    active: postgres
+  banner.location: banner.txt
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  sql.init.mode: never
+  output.ansi.enabled: always
+
+---
+# Postgres properties
+spring:
+  config.activate.on-profile: ${SPRING_PROFILES_ACTIVE}
+  datasource:
+    hikari:
+      jdbc-url: jdbc:postgresql://${DB_HOST:localhost}:5432/${DB_DATABASE:employees}
+      username: ${DB_USERNAME:postgres}
+      password: ${DB_PASSWORD:password}
+      driver-class-name: org.postgresql.Driver
+      auto-commit: false
+      maximum-pool-size: 10
+      minimum-idle: 10
+      pool-name: postgres-con
+
+---
+# Application properties
+global.debugModeEnabled: false
