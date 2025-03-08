@@ -59,7 +59,7 @@ services:
 
 volumes:
   database:
-  grafana:
+#  grafana:
 
 networks:
   network:
