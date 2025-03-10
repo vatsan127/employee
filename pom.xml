@@ -53,18 +53,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Docker Compose  -->
-        <!--
-
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-docker-compose</artifactId>
-                    <scope>runtime</scope>
-                    <optional>true</optional>
-                </dependency>
-
-        -->
-
         <!-- Postgres -->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -99,11 +87,23 @@
             <version>6.1.4</version>
         </dependency>
 
+        <!-- Java Cache API -->
+        <dependency>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
+        </dependency>
+
         <!-- Hazelcast -->
         <dependency>
             <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast-spring</artifactId>
-            <version>5.3.5</version>
+            <artifactId>hazelcast-hibernate53</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>5.5.0</version>
         </dependency>
 
         <!-- Prometheus -->

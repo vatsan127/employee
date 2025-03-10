@@ -2,6 +2,7 @@ server:
   port: 8080
   servlet.context-path: /${spring.application.name}/v1
 
+---
 management:
   metrics.export.prometheus.enabled: true
   info.env.enabled: true
@@ -9,24 +10,31 @@ management:
     web.exposure.include: "*"
     prometheus.enabled: true
 
+---
 spring:
   application:
     name: employee
     version: 1.0.0
-  profiles:
-    active: postgres
+  profiles.active: ${SPRING_PROFILES_ACTIVE:postgres}
   banner.location: banner.txt
+  cache.type: hazelcast
   jpa:
-    hibernate:
-      ddl-auto: none
+    hibernate.ddl-auto: none
     show-sql: true
+    properties.hibernate:
+      cache:
+        use_second_level_cache: true
+        #        use_query_cache: true
+        region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
+
   sql.init.mode: never
   output.ansi.enabled: always
+  logging.level.org.hibernate.cache.spi: DEBUG
 
 ---
 # Postgres properties
 spring:
-  config.activate.on-profile: ${SPRING_PROFILES_ACTIVE}
+  config.activate.on-profile: postgres
   datasource:
     hikari:
       jdbc-url: jdbc:postgresql://${DB_HOST:localhost}:5432/${DB_DATABASE:employees}
@@ -40,4 +48,5 @@ spring:
 
 ---
 # Application properties
-global.debugModeEnabled: false
+global:
+  debugModeEnabled: false

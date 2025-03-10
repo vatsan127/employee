@@ -24,7 +24,9 @@ docker run --name postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=employee
 
 docker exec -it postgres psql -U postgres -d dev
 
-docker images | grep 2025 | awk '{print $3}'
+docker run -p 5701:5701 hazelcast/hazelcast
+
+docker images | grep 2025 | awk '{print $3}' | xargs docker rmi -f
 
 ## Curl
 curl localhost:8080/transaction/v1/actuator/prometheus
