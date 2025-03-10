@@ -15,8 +15,16 @@ psql -U postgres -d dev
 pg_restore -d postgresql://[user]:[password]@[hostname]/employees -Fc employees.sql.gz -c -v --no-owner --no-privileges
 pg_restore -d postgresql://postgres:postgres@localhost/employees -Fc employees.sql.gz -c -v --no-owner --no-privileges
 
+CREATE DATABASE employees;
+\c employees
+create schema employees;
+
 psql postgresql://[user]:[password]@[neon_hostname]/employees
 psql postgresql://postgres:postgres@localhost/employees
+
+psql postgresql://steve:password@localhost/employees
+pg_restore -d postgresql://steve:password@localhost/employees -Fc employees.sql.gz -c -v --no-owner --no-privileges
+
 
 
 ## Docker

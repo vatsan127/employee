@@ -7,7 +7,7 @@
     <cluster-name>dev</cluster-name>
 
     <!-- Entity-specific cache configuration    -->
-    <map name="dev.srivatsan.employee.entity.Employee">
+    <map name="dev.srivatsan.employee.entity.Department">
         <time-to-live-seconds>30</time-to-live-seconds>
     </map>
 </hazelcast>
