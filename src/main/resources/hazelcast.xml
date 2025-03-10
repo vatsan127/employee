@@ -6,6 +6,11 @@
 
     <cluster-name>dev</cluster-name>
 
+    <!-- Enable REST API -->
+    <network>
+        <rest-api enabled="true"/>
+    </network>
+
     <!-- Entity-specific cache configuration    -->
     <map name="dev.srivatsan.employee.entity.Department">
         <time-to-live-seconds>30</time-to-live-seconds>
