@@ -92,23 +92,17 @@
             <version>6.1.4</version>
         </dependency>
 
-        <!-- Java Cache API -->
+        <!-- Hazelcast -->
         <dependency>
-            <groupId>javax.cache</groupId>
-            <artifactId>cache-api</artifactId>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>5.3.5</version>
         </dependency>
 
-        <!-- Hazelcast -->
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast-hibernate53</artifactId>
             <version>5.2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast</artifactId>
-            <version>5.5.0</version>
         </dependency>
 
         <!-- Prometheus -->

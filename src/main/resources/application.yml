@@ -49,4 +49,4 @@ spring:
 ---
 # Application properties
 global:
-  debugModeEnabled: true
+  debugModeEnabled: false

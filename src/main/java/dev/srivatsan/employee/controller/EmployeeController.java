@@ -4,9 +4,8 @@ import dev.srivatsan.employee.entity.Department;
 import dev.srivatsan.employee.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class EmployeeController {
@@ -17,10 +16,16 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/departments")
-    public ResponseEntity<List<Department>> getDepartment() {
-        List<Department> department = employeeService.getDepartment();
+    @GetMapping("/department/{id}")
+    public ResponseEntity<Department> getDepartment(@PathVariable String id) {
+        Department department = employeeService.getDepartment(id);
         return ResponseEntity.ok(department);
+    }
+
+    @GetMapping("/departments/cache/clear")
+    public ResponseEntity clearCache() {
+        employeeService.clearCache();
+        return ResponseEntity.ok("Cache Cleared");
     }
 
 }
