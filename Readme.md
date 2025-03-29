@@ -7,7 +7,8 @@ docker exec -it emp-db psql -U postgres -d postgres
 ```
 
 ```sql
-CREATE DATABASE employees;
+CREATE
+DATABASE employees;
 ```
 
 ```
@@ -49,18 +50,28 @@ psql postgresql://postgres:postgres@localhost/employees
 
 ```sql
 -- get all table details present in the schema
-SELECT * FROM information_schema.tables
-WHERE table_schema = 'employees' AND table_type = 'BASE TABLE';
+SELECT *
+FROM information_schema.tables
+WHERE table_schema = 'employees'
+  AND table_type = 'BASE TABLE';
 
-SELECT * FROM pg_catalog.pg_tables WHERE schemaname = 'employees';
+SELECT *
+FROM pg_catalog.pg_tables
+WHERE schemaname = 'employees';
 
 -- tables present 
-select * from employees.employee e ;
-select * from employees.department d ;
-select * from employees.department_employee de ;
-select * from employees.department_manager dm ;
-select * from employees.salary s ;
-select * from employees.title t ;
+select *
+from employees.employee e;
+select *
+from employees.department d;
+select *
+from employees.department_employee de;
+select *
+from employees.department_manager dm;
+select *
+from employees.salary s;
+select *
+from employees.title t;
 ```
 
 ---
@@ -84,3 +95,12 @@ select * from employees.title t ;
 \dt show tables
 \dt <schema-name>.* -- get all tables from a schema
 ```
+
+---
+
+## API Details
+
+* `http://localhost:8080/employee/v1/actuator` - Actuator endpoint for monitoring and managing the application.
+* `http://localhost:8080/employee/v1/departments` - Retrieve all departments.
+* `http://localhost:8080/employee/v1/department/d009` - Retrieve details of department with ID `d009`.
+* `http://localhost:8080/employee/v1/departments/cache/clear` - Clear the departments cache.

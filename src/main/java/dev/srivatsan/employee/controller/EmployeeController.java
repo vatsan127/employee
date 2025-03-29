@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
@@ -23,7 +23,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/departments/cache/clear")
-    public ResponseEntity clearCache() {
+    public ResponseEntity<String> clearCache() {
         employeeService.clearCache();
         return ResponseEntity.ok("Cache Cleared");
     }
