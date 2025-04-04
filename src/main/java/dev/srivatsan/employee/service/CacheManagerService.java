@@ -25,9 +25,9 @@ public class CacheManagerService {
         log.info("Cache Manager Service : Initializing Departments cache");
         Cache departmentsCache = cacheManager.getCache("departmentsCache");
 
-        List<Department> departmentList = service.getAllDepartments();
-        for (Department department : departmentList) {
-            departmentsCache.put(department.getId(), department);
+        List<Department> departmentDetailsList = service.getAllDepartments();
+        for (Department departmentDetails : departmentDetailsList) {
+            departmentsCache.put(departmentDetails.getId(), departmentDetails);
         }
         log.info("Cache Manager Service : Departments cache initialized Successfully");
 

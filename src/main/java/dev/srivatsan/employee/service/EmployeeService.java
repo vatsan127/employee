@@ -30,6 +30,6 @@ public class EmployeeService {
 
     @CacheEvict(value = "departmentsCache", allEntries = true)
     public void clearCache() {
-        log.info("Departments Cache Cleared");
+        log.info("Clearing All Department Cache");
     }
 }

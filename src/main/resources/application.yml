@@ -22,7 +22,7 @@ spring:
   banner.location: banner.txt
   cache.type: hazelcast
   jpa:
-    hibernate.ddl-auto: none
+    hibernate.ddl-auto: create # none
     show-sql: true
     properties.hibernate:
       cache:
@@ -40,7 +40,7 @@ spring:
   config.activate.on-profile: postgres
   datasource:
     hikari:
-      jdbc-url: jdbc:postgresql://${DB_HOST:localhost}:5432/employees?currentSchema=employees
+      jdbc-url: jdbc:postgresql://${DB_HOST:localhost}:5432/employees;INIT=CREATE SCHEMA IF NOT EXISTS employees
       username: ${DB_USERNAME:postgres}
       password: ${DB_PASSWORD:password}
       driver-class-name: org.postgresql.Driver
@@ -53,3 +53,4 @@ spring:
 # Application properties
 global:
   debugModeEnabled: false
+  database.schema: employees
