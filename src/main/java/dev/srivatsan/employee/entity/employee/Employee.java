@@ -5,19 +5,23 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "employee", schema = "employees")
+@Table(name = "employee")
+//@Table(name = "employee", schema = "employees")
 public class Employee {
 
-/*
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "department_seq_gen")
-    @SequenceGenerator(name = "department_seq_gen", sequenceName = "department_seq", allocationSize = 2)
-*/
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empId_seq_gen")
+    @SequenceGenerator(name = "empId_seq_gen", sequenceName = "empId_seq", allocationSize = 2)
+    private long empId;
 
+    @Column(name = "name")
+    private String name;
 
-    @EmbeddedId
-    private EmpCompositeKey empCompositeKey;
-
+    @Column(name = "gender")
     private String gender;
+
+    @Column(name = "age")
+    private int age;
 
 }

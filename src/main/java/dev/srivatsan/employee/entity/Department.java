@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "department",
-        schema = "employees",
+//        schema = "employees",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"id", "dept_name"}) // Composite Unique Constraint
+                @UniqueConstraint(columnNames = {"id", "department_name"}) // Composite Unique Constraint
         },
         indexes = {
                 @Index(name = "idx_dept_id", columnList = "id")
@@ -23,6 +23,6 @@ public class Department {
     @Column(name = "id", unique = true, nullable = false)
     private String id;
 
-    @Column(name = "dept_name", unique = true, nullable = false)
+    @Column(name = "department_name", unique = true, nullable = false)
     private String deptName;
 }

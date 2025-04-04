@@ -22,7 +22,7 @@ spring:
   banner.location: banner.txt
   cache.type: hazelcast
   jpa:
-    hibernate.ddl-auto: create # none
+    hibernate.ddl-auto: none # create
     show-sql: true
     properties.hibernate:
       cache:
@@ -30,7 +30,7 @@ spring:
         use_query_cache: true
         region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
 
-  sql.init.mode: never
+  sql.init.mode: never # always
   output.ansi.enabled: always
   logging.level.org.hibernate.cache.spi: DEBUG
 
@@ -40,7 +40,7 @@ spring:
   config.activate.on-profile: postgres
   datasource:
     hikari:
-      jdbc-url: jdbc:postgresql://${DB_HOST:localhost}:5432/employees;INIT=CREATE SCHEMA IF NOT EXISTS employees
+      jdbc-url: jdbc:postgresql://${DB_HOST:localhost}:5432/employees
       username: ${DB_USERNAME:postgres}
       password: ${DB_PASSWORD:password}
       driver-class-name: org.postgresql.Driver

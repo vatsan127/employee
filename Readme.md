@@ -1,74 +1,25 @@
 # Readme
 
-## Initialize postgres with employees data
-
-```bash 
-docker exec -it emp-db psql -U postgres -d postgres
-```
+## Database
 
 ```sql
-CREATE
-DATABASE employees;
+CREATE DATABASE employees;
+CREATE SCHEMA IF NOT EXISTS employees;
 ```
 
-```
-\c employees
-```
-
-```
-CREATE SCHEMA employees;
-```
-
-```
-\q
-```
-
-### Copy the employees.sql.gz file to the container
-
-```bash
-docker cp ./sampledata/employees.sql.gz emp-db:/
-```
-
-```bash 
-docker exec -it emp-db sh
-```
-
-### Restore the database for Linux
-
-```
-psql postgresql://[user]:[password]@[hostname]/employees
-pg_restore -d postgresql://postgres:postgres@localhost/employees -Fc employees.sql.gz -c -v --no-owner --no-privileges
-```
-### Restore the database for Windows
-
-```bash
-pg_restore --host=localhost --username=postgres --dbname=employees --clean --verbose --no-owner --no-privileges "employees.sql.gz"
-```
-
-### Connect to the database
-
-```
-psql postgresql://postgres:postgres@localhost/employees
-```
-
-### Tables
+## Tables
 
 ```sql
 -- get all table details present in the schema
-SELECT * FROM information_schema.tables
-WHERE table_schema = 'employees'
-  AND table_type = 'BASE TABLE';
+select * from information_schema.tables
+where table_schema = 'public' and table_type = 'base table';
 
-SELECT * FROM pg_catalog.pg_tables
-WHERE schemaname = 'employees';
+select * from pg_catalog.pg_tables where schemaname = 'public';
 
 -- tables present 
-select * from employees.employee e;
-select * from employees.department d;
-select * from employees.department_employee de;
-select * from employees.department_manager dm;
-select * from employees.salary s;
-select * from employees.title t;
+select * from employee ;
+select * from department ;
+select * from department_manager ;
 ```
 
 ---
@@ -98,6 +49,5 @@ select * from employees.title t;
 ## API Details
 
 * `http://localhost:8080/employee/v1/actuator` - Actuator endpoint for monitoring and managing the application.
-* `http://localhost:8080/employee/v1/departments` - Retrieve all departments.
-* `http://localhost:8080/employee/v1/department/d009` - Retrieve details of department with ID `d009`.
+* `http://localhost:8080/employee/v1/department/1` - Retrieve details of department with ID `d009`.
 * `http://localhost:8080/employee/v1/departments/cache/clear` - Clear the departments cache.
