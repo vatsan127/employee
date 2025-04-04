@@ -33,11 +33,16 @@ docker cp ./sampledata/employees.sql.gz emp-db:/
 docker exec -it emp-db sh
 ```
 
-### Restore the database
+### Restore the database for Linux
 
 ```
 psql postgresql://[user]:[password]@[hostname]/employees
 pg_restore -d postgresql://postgres:postgres@localhost/employees -Fc employees.sql.gz -c -v --no-owner --no-privileges
+```
+### Restore the database for Windows
+
+```bash
+pg_restore --host=localhost --username=postgres --dbname=employees --clean --verbose --no-owner --no-privileges "employees.sql.gz"
 ```
 
 ### Connect to the database
@@ -50,28 +55,20 @@ psql postgresql://postgres:postgres@localhost/employees
 
 ```sql
 -- get all table details present in the schema
-SELECT *
-FROM information_schema.tables
+SELECT * FROM information_schema.tables
 WHERE table_schema = 'employees'
   AND table_type = 'BASE TABLE';
 
-SELECT *
-FROM pg_catalog.pg_tables
+SELECT * FROM pg_catalog.pg_tables
 WHERE schemaname = 'employees';
 
 -- tables present 
-select *
-from employees.employee e;
-select *
-from employees.department d;
-select *
-from employees.department_employee de;
-select *
-from employees.department_manager dm;
-select *
-from employees.salary s;
-select *
-from employees.title t;
+select * from employees.employee e;
+select * from employees.department d;
+select * from employees.department_employee de;
+select * from employees.department_manager dm;
+select * from employees.salary s;
+select * from employees.title t;
 ```
 
 ---
