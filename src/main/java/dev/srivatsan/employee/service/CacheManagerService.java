@@ -7,12 +7,12 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Slf4j
-@Component
+@Service
 public class CacheManagerService {
 
     private final CacheManager cacheManager;
@@ -33,7 +33,7 @@ public class CacheManagerService {
         log.info("CacheManagerService :: clearDepartmentCache :: Clearing Department Cache for ID: {}", id);
     }
 
-    @Scheduled(fixedRate = 30000, initialDelay = 10000)
+    @Scheduled(fixedRate = 60000, initialDelay = 30000)
     public void evictAllCache() {
         log.info("CacheManagerService :: evictAllCache :: Evicting All Cache");
         cacheManager.getCacheNames().forEach(cacheName -> {

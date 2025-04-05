@@ -2,27 +2,20 @@ package dev.srivatsan.employee.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
 
 @Data
 @Entity
 @Table(name = "department",
-//        schema = "employees",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = {"id", "department_name"}) // Composite Unique Constraint
-        },
-        indexes = {
-                @Index(name = "idx_dept_id", columnList = "id")
         }
 )
-//@Cacheable("departments")
-//@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Department {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
     private long id;
-
-    @Column(name = "department_name", unique = true, nullable = false)
-    private String deptName;
+    private String departmentName;
 }

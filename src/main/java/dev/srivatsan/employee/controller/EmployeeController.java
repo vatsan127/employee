@@ -1,7 +1,6 @@
 package dev.srivatsan.employee.controller;
 
-import dev.srivatsan.employee.entity.Department;
-import dev.srivatsan.employee.service.CacheManagerService;
+import dev.srivatsan.employee.entity.Employee;
 import dev.srivatsan.employee.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -12,34 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("departments/")
+@RequestMapping("employees/")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-    private final CacheManagerService cacheManagerService;
 
-    public EmployeeController(EmployeeService employeeService, CacheManagerService cacheManagerService) {
+    public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
-        this.cacheManagerService = cacheManagerService;
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Department> getDepartment(@PathVariable long id) {
-        log.info("EmployeeService :: getDepartment :: Fetching Department with ID: {}", id);
-        Department department = employeeService.getDepartment(id);
-        return ResponseEntity.ok(department);
+    public ResponseEntity<Employee> getAllEmployees(@PathVariable long id) {
+        log.info("EmployeeService :: getAllEmployees :: Fetching all employees");
+        Employee employee = employeeService.getAllEmployees(id);
+        return ResponseEntity.ok(employee);
     }
-
-    @GetMapping("cache/clear/all")
-    public ResponseEntity<String> clearCache() {
-        cacheManagerService.clearDepartmentCache();
-        return ResponseEntity.ok("Cache Cleared");
-    }
-
-    @GetMapping("cache/clear/{id}")
-    public ResponseEntity<String> clearCache(@PathVariable long id) {
-        cacheManagerService.clearDepartmentCache(id);
-        return ResponseEntity.ok("Cache Cleared");
-    }
-
 }

@@ -1,7 +1,9 @@
 package dev.srivatsan.employee.service;
 
 import dev.srivatsan.employee.entity.Department;
+import dev.srivatsan.employee.entity.Employee;
 import dev.srivatsan.employee.repository.DepartmentRepo;
+import dev.srivatsan.employee.repository.EmployeeRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -14,13 +16,14 @@ import java.util.List;
 public class EmployeeService {
 
     private final DepartmentRepo departmentRepo;
+    private final EmployeeRepo employeeRepo;
 
-    public EmployeeService(DepartmentRepo departmentRepo) {
+    public EmployeeService(DepartmentRepo departmentRepo, EmployeeRepo employeeRepo) {
         this.departmentRepo = departmentRepo;
+        this.employeeRepo = employeeRepo;
     }
 
     public List<Department> getAllDepartments() {
-        log.info("EmployeeService :: getAllDepartments :: Fetching All Departments");
         return departmentRepo.findAll();
     }
 
@@ -28,5 +31,9 @@ public class EmployeeService {
     public Department getDepartment(long id) {
         log.info("EmployeeService :: getDepartment :: Fetching Department with ID: {}", id);
         return departmentRepo.findById(id).orElse(new Department());
+    }
+
+    public Employee getAllEmployees(long id) {
+        return employeeRepo.findById(id).get();
     }
 }
