@@ -1,0 +1,31 @@
+🔹 @OneToOne Mapping
+        For every record in the parent table there is always one record present in the child table.
+
+🔹 @JoinColumn: Specifies the foreign key column. References, especially useful when dealing with composite keys (with @JoinColumns).
+
+🔹 Unidirectional
+    One entity references only one instance of another entity. The reference exists only in one direction (from parent to child).
+
+🔹 Bidirectional
+    Both entities reference each other. Needed when you want to navigate from both entities to each other.
+
+🔹 Cascade Types
+    PERSIST - Persists child entity automatically when parent is persisted.
+    MERGE -   Updates child entity automatically when parent is updated.
+    REMOVE -  Deletes child entity when parent is deleted.
+    REFRESH - Refreshes child from DB bypassing first-level cache when parent is refreshed.
+    DETACH -  Detaches child entity from persistence context when parent is detached.
+    ALL - Combines all the above cascade types.
+
+🔹 Lazy vs Eager Loading
+    EAGER - Loads related entity immediately with parent. Useful when child is almost always required. Default For OneToOne, @ManyToOne.
+    LAZY - Loads related entity only when accessed. Useful for performance; avoids unnecessary DB calls for unused data. Default For @OneToMany, @ManyToMany.
+
+🔹 Serialization Issues in Bidirectional Mapping
+    Use @JsonManagedReference (on Parent side) to serialize the child entity.
+    Use @JsonBackReference (on Child side) not to serialize the parent entity.
+    Use @JsonIdentityInfo with a unique ID to prevent repeated serialization in Bidirectional Mapping.
+
+🔹 DTO
+    A Data Transfer Object separates the internal entity structure from the API response.
+    Also to avoid serialization issues and customize API response shape.

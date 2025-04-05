@@ -33,7 +33,7 @@ public class CacheManagerService {
         log.info("CacheManagerService :: clearDepartmentCache :: Clearing Department Cache for ID: {}", id);
     }
 
-    @Scheduled(fixedRate = 5000, initialDelay = 10000)
+    @Scheduled(fixedRate = 30000, initialDelay = 10000)
     public void evictAllCache() {
         log.info("CacheManagerService :: evictAllCache :: Evicting All Cache");
         cacheManager.getCacheNames().forEach(cacheName -> {
