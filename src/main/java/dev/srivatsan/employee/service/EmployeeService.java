@@ -36,4 +36,8 @@ public class EmployeeService {
     public Employee getAllEmployees(long id) {
         return employeeRepo.findById(id).get();
     }
+
+    public Employee createEmployee(Employee employee) {
+        return employeeRepo.save(employee);
+    }
 }

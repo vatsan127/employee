@@ -4,10 +4,7 @@ import dev.srivatsan.employee.entity.Employee;
 import dev.srivatsan.employee.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -26,4 +23,12 @@ public class EmployeeController {
         Employee employee = employeeService.getAllEmployees(id);
         return ResponseEntity.ok(employee);
     }
+
+    @PostMapping
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+        log.info("EmployeeService :: createEmployee :: Incoming request : {}", employee);
+        Employee createdEmployee = employeeService.createEmployee(employee);
+        return ResponseEntity.ok(createdEmployee);
+    }
+
 }

@@ -7,10 +7,10 @@ import lombok.Data;
 @Entity
 @Table(name = "employee")
 public class Employee {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
+    @SequenceGenerator(name = "employee_seq", sequenceName = "employee_sequence",
+            allocationSize = 10)
     private Long id;
 
     @Column(name = "name", length = 100, nullable = false)
@@ -22,7 +22,7 @@ public class Employee {
     @Column(name = "age", nullable = false)
     private int age;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id", referencedColumnName = "id")
     private ContactDetails contact;
 }
