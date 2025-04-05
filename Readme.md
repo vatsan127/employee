@@ -43,11 +43,3 @@ select * from department_manager ;
 \dt show tables
 \dt <schema-name>.* -- get all tables from a schema
 ```
-
----
-
-## API Details
-
-* `http://localhost:8080/employee/v1/actuator` - Actuator endpoint for monitoring and managing the application.
-* `http://localhost:8080/employee/v1/department/1` - Retrieve details of department with ID `d009`.
-* `http://localhost:8080/employee/v1/departments/cache/clear` - Clear the departments cache.

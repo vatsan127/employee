@@ -13,23 +13,20 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    private DepartmentRepo departmentRepo;
+    private final DepartmentRepo departmentRepo;
 
     public EmployeeService(DepartmentRepo departmentRepo) {
         this.departmentRepo = departmentRepo;
     }
 
     public List<Department> getAllDepartments() {
+        log.info("EmployeeService :: getAllDepartments :: Fetching All Departments");
         return departmentRepo.findAll();
     }
 
     @Cacheable(value = "departmentsCache", key = "#id")
-    public Department getDepartment(String id) {
+    public Department getDepartment(long id) {
+        log.info("EmployeeService :: getDepartment :: Fetching Department with ID: {}", id);
         return departmentRepo.findById(id).orElse(new Department());
-    }
-
-    @CacheEvict(value = "departmentsCache", allEntries = true)
-    public void clearCache() {
-        log.info("Clearing All Department Cache");
     }
 }

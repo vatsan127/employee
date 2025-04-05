@@ -1,6 +1,6 @@
 server:
   port: 8080
-  servlet.context-path: /${spring.application.name}/v1
+  servlet.context-path: /${spring.application.name}/v1/
 
 ---
 management:
@@ -53,4 +53,3 @@ spring:
 # Application properties
 global:
   debugModeEnabled: false
-  database.schema: employees
