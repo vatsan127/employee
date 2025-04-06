@@ -10,6 +10,6 @@ public class CacheConfig {
 
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("departmentsCache");
+        return new ConcurrentMapCacheManager("departmentsCache", "employeeCache");
     }
 }

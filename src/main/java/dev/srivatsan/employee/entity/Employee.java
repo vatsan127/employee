@@ -2,6 +2,7 @@ package dev.srivatsan.employee.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.cache.annotation.Cacheable;
 
 @Data
 @Entity

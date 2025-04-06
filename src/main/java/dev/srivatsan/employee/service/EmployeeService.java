@@ -6,6 +6,7 @@ import dev.srivatsan.employee.repository.DepartmentRepo;
 import dev.srivatsan.employee.repository.EmployeeRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -33,10 +34,12 @@ public class EmployeeService {
         return departmentRepo.findById(id).orElse(new Department());
     }
 
+    @Cacheable(value = "employeeCache", key = "#id")
     public Employee getAllEmployees(long id) {
         return employeeRepo.findById(id).get();
     }
 
+    @CachePut(value = "employeeCache", key = "#employee.id")
     public Employee createEmployee(Employee employee) {
         return employeeRepo.save(employee);
     }
