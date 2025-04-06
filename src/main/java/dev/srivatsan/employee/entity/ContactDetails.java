@@ -9,8 +9,7 @@ import lombok.Data;
 public class ContactDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contact_seq")
-    @SequenceGenerator(name = "contact_seq", sequenceName = "contact_sequence", initialValue = 1,
-            allocationSize = 10)
+    @SequenceGenerator(name = "contact_seq", sequenceName = "contact_sequence", allocationSize = 25)
     private Long id;
     private String phone;
     private String email;

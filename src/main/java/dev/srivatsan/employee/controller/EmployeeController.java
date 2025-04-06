@@ -18,8 +18,8 @@ public class EmployeeController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Employee> getAllEmployees(@PathVariable long id) {
-        log.info("EmployeeService :: getAllEmployees :: Fetching all employees");
+    public ResponseEntity<Employee> getEmployeesById(@PathVariable long id) {
+        log.info("EmployeeService :: getEmployeesById :: ID : {}", id);
         Employee employee = employeeService.getAllEmployees(id);
         return ResponseEntity.ok(employee);
     }
