@@ -1,11 +1,16 @@
 package dev.srivatsan.employee.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "tasks")
+@JsonIdentityInfo( // To avoid infinite recursion during serialization
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_seq")
@@ -22,5 +27,10 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
+
+    @Override
+    public String toString() {
+        return "Task [id=" + id + ", title=" + title + ", description=" + description + ", status=" + status + "]";
+    }
 
 }

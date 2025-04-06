@@ -26,7 +26,7 @@ public class EmployeeController {
 
     @PostMapping
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
-        log.info("EmployeeService :: createEmployee :: Incoming request : {}", employee);
+        log.info("EmployeeService :: createEmployee :: Incoming Request : {}", employee);
         Employee createdEmployee = employeeService.createEmployee(employee);
         return ResponseEntity.ok(createdEmployee);
     }

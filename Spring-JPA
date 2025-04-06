@@ -29,3 +29,33 @@
 🔹 DTO
     A Data Transfer Object separates the internal entity structure from the API response.
     Also to avoid serialization issues and customize API response shape.
+
+    OneToMany Relationship
+    	Represents one entity associated with multiple records in another entity (e.g., User can have many Orders)
+    	Reference exists only in one direction: from Parent to Child
+    	By default uses lazy loading (child rows not fetched when querying parents)
+
+    Implementation Details
+    	Since one parent can have multiple children, JPA creates a NEW TABLE to store the mapping by default
+    	To avoid creating a new table, use @JoinColumn which stores Foreign Key in the Child table
+
+    Cascade Types
+    	CascadeType.PERSIST: Saving Parent also saves related Children
+    	CascadeType.MERGE: Updating Parent also updates Children
+    	CascadeType.REMOVE: Deleting Parent also deletes Children
+    	CascadeType.ALL: Includes all cascade operations
+
+    Orphan Removal
+    	When enabled (orphanRemoval = true), automatically removes child entries when they're removed from Parent collection
+    	Without orphan removal, child entries remain in database even when removed from parent collection
+
+    Unidirectional OneToMany
+    	Only Parent has reference to Child
+    	Child doesn't reference back to Parent
+
+    Bidirectional OneToMany
+    	Parent references Child
+    	Each Child references back to Parent
+    	Has "Owning Side" and "Inverse Side" concepts:
+    		Owning Side: Holds the Foreign Key relationship in table
+    		Inverse Side: No Foreign Key created in table, only holds object reference of owning entity

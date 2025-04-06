@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "employee")
@@ -18,14 +20,8 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
     @SequenceGenerator(name = "employee_seq", sequenceName = "employee_sequence", allocationSize = 25)
     private Long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "gender")
     private String gender;
-
-    @Column(name = "age")
     private int age;
 
     /**
@@ -42,4 +38,22 @@ public class Employee {
      */
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> task;
+
+    public void setTask(List<Task> task) {
+        this.task = task;
+        for (Task t : task) {
+            t.setEmployee(this);
+        }
+    }
+
+    public void setContactDetails(ContactDetails contactDetails) {
+        this.contactDetails = contactDetails;
+        contactDetails.setEmployee(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", age=" + age +
+                ", contactDetails=" + contactDetails + ", task=" + task + "]";
+    }
 }
