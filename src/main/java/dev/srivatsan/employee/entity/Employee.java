@@ -34,7 +34,7 @@ public class Employee {
      */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id", referencedColumnName = "id")
-    private ContactDetails contact;
+    private ContactDetails contactDetails;
 
     /**
      * Parent to child relationship

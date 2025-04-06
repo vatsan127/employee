@@ -11,6 +11,7 @@ public class ContactDetails {
     /**
      * Child to parent relationship
      * Inverse side of the relationship
+     * For Unidirectional mapping
      */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contact_seq")
@@ -18,4 +19,11 @@ public class ContactDetails {
     private Long id;
     private String phone;
     private String email;
+
+    /**
+     * Child to parent relationship
+     * For Bi-directional mapping
+     */
+    @OneToOne(mappedBy = "contactDetails", cascade = CascadeType.ALL)
+    private Employee employee;
 }
