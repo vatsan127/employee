@@ -1,16 +1,11 @@
 package dev.srivatsan.employee.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "contact_details")
-@JsonIdentityInfo( // To avoid infinite recursion during serialization
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 public class ContactDetails {
 
     /**

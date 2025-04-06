@@ -1,7 +1,5 @@
 package dev.srivatsan.employee.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,10 +10,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "employee")
-@JsonIdentityInfo( // To avoid infinite recursion during serialization
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
-public class Employee {
+public class Employee extends UniqueIdModel{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
     @SequenceGenerator(name = "employee_seq", sequenceName = "employee_sequence", allocationSize = 25)
