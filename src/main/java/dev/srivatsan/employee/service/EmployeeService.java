@@ -5,7 +5,6 @@ import dev.srivatsan.employee.entity.Employee;
 import dev.srivatsan.employee.repository.DepartmentRepo;
 import dev.srivatsan.employee.repository.EmployeeRepo;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
