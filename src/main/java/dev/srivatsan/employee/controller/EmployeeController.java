@@ -1,10 +1,13 @@
 package dev.srivatsan.employee.controller;
 
 import dev.srivatsan.employee.entity.Employee;
+import dev.srivatsan.employee.entity.EmployeeDto;
 import dev.srivatsan.employee.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -29,6 +32,12 @@ public class EmployeeController {
         log.info("EmployeeService :: createEmployee :: Incoming Request : {}", employee);
         Employee createdEmployee = employeeService.createEmployee(employee);
         return ResponseEntity.ok(createdEmployee);
+    }
+
+    @GetMapping("full-info/")
+    public ResponseEntity<List<EmployeeDto>> getEmploeesFullInfo() {
+        List<EmployeeDto> result = employeeService.getEmployeeFullInfo();
+        return ResponseEntity.ok(result);
     }
 
 }

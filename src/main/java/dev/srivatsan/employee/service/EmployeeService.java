@@ -2,6 +2,7 @@ package dev.srivatsan.employee.service;
 
 import dev.srivatsan.employee.entity.Department;
 import dev.srivatsan.employee.entity.Employee;
+import dev.srivatsan.employee.entity.EmployeeDto;
 import dev.srivatsan.employee.entity.Task;
 import dev.srivatsan.employee.repository.DepartmentRepo;
 import dev.srivatsan.employee.repository.EmployeeRepo;
@@ -10,9 +11,14 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -51,5 +57,29 @@ public class EmployeeService {
         employee.setTask(tasks);
         employee.setContactDetails(employee.getContactDetails());
         return employeeRepo.save(employee);
+    }
+
+    public List<EmployeeDto> getEmployeeFullInfo() {
+        List<EmployeeDto> result = new ArrayList<>();
+        Pageable pageable = PageRequest.of(0, 5);
+
+        Page<Object[]> employeeFullDetailsPage = employeeRepo.getEmployeeFullDetails(pageable);
+        List<Object[]> employeeFullDetails = employeeFullDetailsPage.getContent();
+
+        log.info("EmployeeService :: getEmployeeFullInfo :: totalPages : {}", employeeFullDetailsPage.getTotalPages());
+        log.info("EmployeeService :: getEmployeeFullInfo :: pageNumber : {}", employeeFullDetailsPage.getNumber());
+        log.info("EmployeeService :: getEmployeeFullInfo :: pageSize : {}", employeeFullDetailsPage.getSize());
+
+        employeeFullDetails.forEach(employee ->
+                result.add(new EmployeeDto(
+                        String.valueOf(employee[0]),
+                        String.valueOf(employee[1]),
+                        String.valueOf(employee[2]),
+                        String.valueOf(employee[3]),
+                        String.valueOf(employee[4])
+                ))
+        );
+
+        return result;
     }
 }
